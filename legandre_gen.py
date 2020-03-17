@@ -57,13 +57,18 @@ def single_legandre_gen(N_length):
         a[n] = kron_jack_simbol(n, N_length)
     return a
        
-    
-    
 
-#print(kron_jack_sinbol(1, 7))
-#a1 = kron_jack_sinbol(1, 0)
-#a2 = kron_jack_sinbol(0, 0)
-#b1 = kron_jack_sinbol(4, 2)
-
-for Niter in range(1, 8):
-    print (Niter, kron_jack_sinbol(Niter, 7))
+if __name__ == "__main__":
+    N_length = 19
+    test_seq=single_legandre_gen(N_length)
+    print(test_seq)
+    import numpy as np
+    from numpy.fft import fft, ifft
+    test_seq_spec = fft(test_seq)
+    import matplotlib.pyplot as plt
+    autocorrcirc = ifft(test_seq_spec * np.conj(test_seq_spec)).real
+    plt.figure()
+    plt.plot(autocorrcirc)
+    autocorrlin = np.correlate(test_seq, test_seq, mode='full')
+    plt.figure()
+    plt.plot(autocorrlin)
