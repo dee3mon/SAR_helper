@@ -6,7 +6,7 @@ Created on Sun Mar 15 23:18:53 2020
 """
 
 
-def kron_jack_sinbol(a, b):
+def kron_jack_simbol(a, b):
     from math import fmod, pow
     k = None
     if b==0:
@@ -49,14 +49,21 @@ def kron_jack_sinbol(a, b):
         a = fmod(b, r)
         b = r
             
+def single_legandre_gen(N_length):
+    import numpy as np
+    a = np.zeros(N_length)
+    a[0]=1
+    for n in range(1, N_length):
+        a[n] = kron_jack_simbol(n, N_length)
+    return a
        
     
     
 
+#print(kron_jack_sinbol(1, 7))
+#a1 = kron_jack_sinbol(1, 0)
+#a2 = kron_jack_sinbol(0, 0)
+#b1 = kron_jack_sinbol(4, 2)
 
-a1 = kron_jack_sinbol(1, 0)
-a2 = kron_jack_sinbol(0, 0)
-b1 = kron_jack_sinbol(4, 2)
-
-for Niter in range(8):
+for Niter in range(1, 8):
     print (Niter, kron_jack_sinbol(Niter, 7))
